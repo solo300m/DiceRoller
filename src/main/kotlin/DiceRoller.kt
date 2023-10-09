@@ -9,14 +9,16 @@ class DiceRoller() {
         fun onDouble(diceValue: Int)
     }
 
-    fun roll(callback: Callback) {
+    fun roll(callback: Callback):Int {
         val firstDiceValue = Random.nextInt(1, 7)
         val secondDiceValue = Random.nextInt(1, 7)
 
         if (firstDiceValue != secondDiceValue) {
             callback.onRoll(firstDiceValue, secondDiceValue)
+            return 0
         } else {
             callback.onDouble(firstDiceValue)
+            return 1
         }
     }
 }
@@ -33,7 +35,12 @@ fun main() {
         }
     }
     val x:DiceRoller = DiceRoller()
+    var tmp:Int
     for(i in 1..10) {
-        x.roll(interfaceBox);
+        tmp = x.roll(interfaceBox);
+        if(tmp == 1)
+            tmp = x.roll(interfaceBox);
+        else
+            continue;
     }
 }
