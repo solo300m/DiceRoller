@@ -25,7 +25,7 @@ class Lotto {
             while (!win) {
                 var check: Boolean = false;
                 while (!check) {
-                    number = abs(Random.nextInt() % 99 + 1);
+                    number = abs(Random.nextInt(from =1, until = 99));
                     if (!thrownNumbers.contains(number)) {
                         thrownNumbers.add(number);
                         for (i in 0..gamerList.size - 1) {
